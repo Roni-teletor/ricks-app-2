@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import useSWR from "swr";
-import Skeleton  from "./Skeleton";
+import Skeleton from "./Skeleton";
 import { getStatusSymbol } from "../utilities/getStatusCharacter";
 import { getSpeciesSymbol } from "../utilities/getStatusCharacter";
 import { getGenderSymbol } from "../utilities/getStatusCharacter";
+import { Link } from "react-router-dom";
 
 const fetcher = async (url) => fetch(url).then((res) => res.json());
 
@@ -20,31 +21,42 @@ const RickyMorty = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        data?.results?.map((hello) =>{
-          console.log('hhhh', hello)
+        data?.results?.map((CharacterData) => {
+          console.log("hhhh", CharacterData);
           return (
-          <div
-            key={hello.id}
-            className="group max-w-sm mx-4 my-4 rounded-md overflow-hidden shadow-lg w-full h-auto transition-transform transform scale-100 hover:scale-110 "
-          >
-            {!loaded && 
-                <Skeleton />
-            }
-            <img 
-            className={`w-full h-auto ${loaded ? <Skeleton /> : 'opacity-0'}`} 
-            src={hello.image} 
-            alt={hello.name}
-            loading="lazy"
-            onLoad={() => setLoaded(true)}
-            />
-            <div className="h-full hidden group-hover:flex text-center text-white flex-col">
-              <h1 className="font-bold text-xl mb-2">Name: {hello.name}</h1>
-              <h1 className="font-bold text-xl mb-2">Status:  {getStatusSymbol(hello.status)}</h1>
-              <h1 className="font-bold text-xl mb-2">Species: {getSpeciesSymbol(hello.species)}</h1>
-              <h1 className="font-bold text-xl mb-2">Gender:  {getGenderSymbol(hello.gender)}</h1>
+            <>
+            <Link to={`/ricky/:${CharacterData?.name.toLowerCase().replace(/\s+/g, '-')}`}>
+            <div
+              key={CharacterData.id}
+              className="group max-w-sm mx-4 my-4 rounded-lg overflow-hidden shadow-lg w-full h-auto transition-transform transform scale-100 hover:scale-110 bg-blue-400 cursor-pointer"
+            >
+              {!loaded && <Skeleton />}
+              <img
+                className={`w-full h-auto ${
+                  loaded ? <Skeleton /> : "opacity-0"
+                }`}
+                src={CharacterData.image}
+                alt={CharacterData.name}
+                loading="lazy"
+                onLoad={() => setLoaded(true)}
+              />
+              <div className="h-full hidden group-hover:flex text-center  flex-col hidden ">
+                <h1 className="font-bold text-xl mb-2">Name: {CharacterData.name}</h1>
+                <h1 className="font-bold text-xl mb-2">
+                  Status: {getStatusSymbol(CharacterData.status)}
+                </h1>
+                <h1 className="font-bold text-xl mb-2">
+                  Species: {getSpeciesSymbol(CharacterData.species)}
+                </h1>
+                <h1 className="font-bold text-xl mb-2">
+                  Gender: {getGenderSymbol(CharacterData.gender)}
+                </h1>
+              </div>
             </div>
-          </div>
-        )})
+            </Link>
+            </>
+          );
+        })
       )}
       <div className="w-full flex  justify-center items-center justify-evenly  h-[100px] mt-4">
         <button

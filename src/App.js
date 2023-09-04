@@ -5,6 +5,7 @@ import RickyMorty from './components/RickyMortyHome';
 import Testing from './components/Testing';
 import Home from './components/Home';
 import Comments from './components/Comments';
+import CharacterInfo from './components/CharacterInfo';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/ricky' element={<RickyMorty />} />
         <Route path='/ricky/test' element={<Testing />} />
         <Route path='/comments' element={<Comments />} />
+        <Route path={`/ricky/:name`} element={<CharacterInfo />} />
       </Routes>
     </div>
   );
