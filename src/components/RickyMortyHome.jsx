@@ -9,7 +9,35 @@ const RickyMorty = () => {
     `https://rickandmortyapi.com/api/character?page=${page}`,
     fetcher
   );
+
+  const getStatusSymbol = (status) => {
+    if (status === "Alive") {
+      return "✅";
+    } else if (status === "Dead") {
+      return "❌";
+    } else {
+      return "❓";
+    }
+  };
+
+  const getSpeciesSymbol = (species) => {
+    if (species === "Human") {
+        return "🧍"
+    } else if (species === "Alien") {
+        return "👽"
+    }
+  }
+
+  const getGenderSymbol = (gender) => {
+    if (gender === "Male") {
+        return "👨"
+    } else if (gender === "Female") {
+        return "👩"
+    }
+  }
+
   console.log("kkkkkk", data);
+
   return (
     <div className="w-full flex flex-wrap justify-center">
       {isLoading ? (
@@ -23,10 +51,10 @@ const RickyMorty = () => {
             <img src={hello.image} alt={hello.name} className="w-full h-auto" />
 
             <div className="h-auto hidden group-hover:block">
-              <h1 className="font-bold text-xl mb-2">{hello.name}</h1>
-              <h1 className="font-bold text-xl mb-2">{hello.status}</h1>
-              <h1 className="font-bold text-xl mb-2">{hello.species}</h1>
-              <h1 className="font-bold text-xl mb-2">{hello.gender}</h1>
+              <h1 className="font-bold text-xl mb-2">Name: {hello.name}</h1>
+              <h1 className="font-bold text-xl mb-2">Status: {hello.status} {getStatusSymbol(hello.status)}</h1>
+              <h1 className="font-bold text-xl mb-2">Species: {hello.species} {getSpeciesSymbol(hello.species)}</h1>
+              <h1 className="font-bold text-xl mb-2">Gender: {hello.gender} {getGenderSymbol(hello.gender)}</h1>
             </div>
           </div>
         ))
