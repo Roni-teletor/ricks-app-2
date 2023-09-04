@@ -1,7 +1,6 @@
 const Testing = () => {
     return ( 
         <>
-        <h1>Testing</h1>
         </>
      );
 }
