@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <div className="w-full flex justify-end border-y-2">
-        <div className="w-[50%] flex justify-around">
+      <div className="w-full flex justify-end border-y-2 h-[8vh] flex items-center bg-[#010E03] ">
+        <div className="w-[50%] flex justify-around text-[#4DA04D]">
             <Link to="/">
-          <button>home</button>
+          <button>Home</button>
             </Link>
-          <button>comments</button>
+           <Link to="/comments">
+           <button>Comments</button>
+           </Link>
           <Link to="/ricky">
-          <button>Ricky morty</button>
+          <button>Ricky & Morty</button>
           </Link>
           <Link to="/ricky/test">
-          <button>test</button>
+          <button>Test</button>
           </Link>
         </div>
       </div>
