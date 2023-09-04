@@ -16,7 +16,7 @@ const RickyMorty = () => {
   );
 
   return (
-    <div className="w-full flex flex-wrap justify-center bg-[#010E03]">
+    <div className="w-full flex flex-wrap justify-center">
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -25,7 +25,7 @@ const RickyMorty = () => {
           return (
           <div
             key={hello.id}
-            className="group max-w-sm mx-4 my-4 rounded-md overflow-hidden shadow-lg w-full h-auto transition-transform transform scale-100 hover:scale-110  border-4 border-[#60B854]"
+            className="group max-w-sm mx-4 my-4 rounded-md overflow-hidden shadow-lg w-full h-auto transition-transform transform scale-100 hover:scale-110 "
           >
             {!loaded && 
                 <Skeleton />
@@ -37,7 +37,7 @@ const RickyMorty = () => {
             loading="lazy"
             onLoad={() => setLoaded(true)}
             />
-            <div className="h-full hidden group-hover:flex text-center text-white bg-[#4DA04D] flex-col">
+            <div className="h-full hidden group-hover:flex text-center text-white flex-col">
               <h1 className="font-bold text-xl mb-2">Name: {hello.name}</h1>
               <h1 className="font-bold text-xl mb-2">Status:  {getStatusSymbol(hello.status)}</h1>
               <h1 className="font-bold text-xl mb-2">Species: {getSpeciesSymbol(hello.species)}</h1>
