@@ -22,7 +22,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/ricky' element={<RickyMorty data={data} isLoading={isLoading} setPage={setPage} />} />
+        <Route path='/ricky' element={<RickyMorty data={data} isLoading={isLoading} page={page} setPage={setPage} />} />
         <Route path='/ricky/test' element={<Testing />} />
         <Route path='/comments' element={<Comments />} />
         <Route path={`/ricky/:name`} element={<CharacterInfo />} />
