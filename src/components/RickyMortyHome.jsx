@@ -1,20 +1,15 @@
 import React, { useState } from "react";
-import useSWR from "swr";
 import Skeleton from "./Skeleton";
 import { getStatusSymbol } from "../utilities/getStatusCharacter";
 import { getSpeciesSymbol } from "../utilities/getStatusCharacter";
 import { getGenderSymbol } from "../utilities/getStatusCharacter";
 import { Link } from "react-router-dom";
 
-const fetcher = async (url) => fetch(url).then((res) => res.json());
-
-const RickyMorty = () => {
+const RickyMorty = ({data, isLoading, setPage, page}) => {
+  
   const [loaded, setLoaded] = useState(false);
-  const [page, setPage] = useState(1);
-  const { data, error, isLoading } = useSWR(
-    `https://rickandmortyapi.com/api/character?page=${page}`,
-    fetcher
-  );
+ 
+ 
 
   return (
     <div className="w-full flex flex-wrap justify-center">
